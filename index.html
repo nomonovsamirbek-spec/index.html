@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anor AI - Tariflar</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1c1c1c; color: white; padding: 20px; text-align: center; margin: 0; }
+        h1 { font-size: 22px; margin-bottom: 20px; color: #00ffcc; }
+        .card { background: #2d2d2d; border-radius: 15px; padding: 20px; margin-bottom: 15px; border: 1px solid #444; transition: 0.3s; }
+        .piyoda { border-left: 5px solid #95a5a6; } /* Yangi foydalanuvchilar uchun */
+        .cobalt { border-left: 5px solid #3498db; }
+        .gentra { border-left: 5px solid #9b59b6; }
+        .malibu { border-left: 5px solid #e74c3c; }
+        h2 { margin: 0; font-size: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        p { color: #bbb; margin: 10px 0; font-size: 14px; }
+        .price { font-size: 18px; font-weight: bold; color: #00ffcc; }
+        .btn { background: #00ffcc; color: black; border: none; padding: 12px 20px; border-radius: 10px; font-weight: bold; width: 100%; margin-top: 15px; cursor: pointer; font-size: 16px; }
+        .btn:active { transform: scale(0.98); }
+    </style>
+</head>
+<body>
+
+    <h1>Anor AI Tariflari</h1>
+
+    <div class="card piyoda">
+        <h2>🚶 Piyoda</h2>
+        <p>Bepul sinov muddati yoki yangilar uchun</p>
+        <div class="price">0 so'm</div>
+        <button class="btn" onclick="buy('piyoda')">Sotib olish</button>
+    </div>
+
+    <div class="card cobalt">
+        <h2>🚙 Cobalt</h2>
+        <p>1,000 token + Asosiy AI</p>
+        <div class="price">98,000 so'm</div>
+        <button class="btn" onclick="buy('cobalt')">Sotib olish</button>
+    </div>
+
+    <div class="card gentra">
+        <h2>🚗 Gentra</h2>
+        <p>2,200 token + Tezkor AI</p>
+        <div class="price">200,000 so'm</div>
+        <button class="btn" onclick="buy('gentra')">Sotib olish</button>
+    </div>
+
+    <div class="card malibu">
+        <h2>🚀 Malibu</h2>
+        <p>6,000 token + Video & VIP</p>
+        <div class="price">500,000 so'm</div>
+        <button class="btn" onclick="buy('malibu')">Sotib olish</button>
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+
+        // Navigatsiya tugmalari logikasi
+        tg.BackButton.show();
+        tg.BackButton.onClick(() => {
+            tg.close(); // Mini App'dan chiqish
+        });
+
+        // Asosiy menyu tugmasi (ixtiyoriy, agar biror amal tanlansa ko'rsatiladi)
+        function buy(tariff) {
+            // Tanlangan tarifni botga yuborish
+            tg.sendData(tariff); 
+            
+            // Sotib olish tugmasi bosilganda asosiy menyu tugmasini chiqarish
+            tg.MainButton.setText("🏠 Asosiy menyu");
+            tg.MainButton.show();
+            tg.MainButton.onClick(() => {
+                tg.close();
+            });
+        }
+    </script>
+</body>
+</html>
