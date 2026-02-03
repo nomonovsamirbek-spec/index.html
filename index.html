@@ -2,22 +2,24 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Anor AI - Sotib olish</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { font-family: sans-serif; background-color: #0f0f0f; color: white; margin: 0; padding: 0; }
-        .slider-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px 0; scrollbar-width: none; }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background-color: #000; color: #fff; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        .slider-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; width: 100vw; height: 100vh; scrollbar-width: none; align-items: center; }
         .slider-container::-webkit-scrollbar { display: none; }
-        .card { flex: 0 0 85%; margin: 0 7.5%; background: #1a1a1a; border-radius: 20px; padding: 20px; scroll-snap-align: center; border: 1px solid #333; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); box-sizing: border-box; }
-        .badge { position: absolute; top: 15px; right: 15px; background: #ff3b3b; color: white; padding: 5px 10px; border-radius: 10px; font-size: 12px; font-weight: bold; }
-        .card-title { font-size: 24px; font-weight: bold; margin-bottom: 10px; color: #a55eea; text-align: left; }
-        .price { font-size: 30px; font-weight: bold; margin: 10px 0; text-align: left; }
-        .old-price { font-size: 18px; text-decoration: line-through; color: #888; margin-right: 10px; }
-        .feature-list { list-style: none; padding: 0; margin: 20px 0; text-align: left; }
-        .feature-item { margin: 12px 0; font-size: 14px; display: flex; align-items: center; }
-        .feature-item::before { content: '✅'; margin-right: 10px; }
-        .buy-btn { width: 100%; padding: 15px; border-radius: 15px; border: none; background: #a55eea; color: white; font-size: 18px; font-weight: bold; cursor: pointer; }
+        .card { min-width: 85vw; max-width: 85vw; margin: 0 7.5vw; background: #111; border-radius: 25px; padding: 25px; scroll-snap-align: center; border: 1px solid #222; box-sizing: border-box; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .badge { position: absolute; top: 15px; right: 15px; background: #ff3b3b; color: white; padding: 5px 12px; border-radius: 12px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .title { font-size: 26px; font-weight: 800; color: #a55eea; margin-bottom: 5px; width: 100%; }
+        .price-row { margin: 15px 0; width: 100%; }
+        .old-price { font-size: 18px; text-decoration: line-through; color: #666; margin-right: 10px; }
+        .current-price { font-size: 32px; font-weight: 900; color: #fff; }
+        .feature-list { list-style: none; padding: 0; margin: 20px 0; width: 100%; text-align: left; }
+        .feature-item { margin: 12px 0; font-size: 14px; color: #ccc; display: flex; align-items: center; }
+        .feature-item::before { content: '✔️'; margin-right: 12px; color: #2ecc71; font-size: 14px; }
+        .buy-btn { width: 100%; padding: 18px; border-radius: 18px; border: none; background: #8e44ad; color: white; font-size: 18px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; margin-top: auto; }
+        .buy-btn:active { transform: scale(0.98); background: #9b59b6; }
     </style>
 </head>
 <body>
@@ -25,55 +27,64 @@
 <div class="slider-container">
     <div class="card">
         <div class="badge">AKSIYA -35%</div>
-        <div class="card-title">Cobalt</div>
-        <div class="price"><span class="old-price">150 000</span>98 000 so'm</div>
+        <div class="title">Cobalt</div>
+        <div class="price-row">
+            <span class="old-price">150 000</span>
+            <span class="current-price">98 000 so'm</span>
+        </div>
         <ul class="feature-list">
-            <li>240 Jami Token</li>
-            <li>20 ta Kling Video</li>
-            <li>30 ta Sora/Veo Video</li>
-            <li>160 ta Musiqa</li>
-            <li>480 ta Nano Banana Pro rasm</li>
-            <li>150 ta GPT/Gemini so'rovi</li>
+            <li class="feature-item">240 Jami Token</li>
+            <li class="feature-item">20 ta Kling Video</li>
+            <li class="feature-item">30 ta Sora/Veo Video</li>
+            <li class="feature-item">160 ta Musiqa</li>
+            <li class="feature-item">480 ta Nano Banana Pro rasm</li>
+            <li class="feature-item">150 ta GPT/Gemini so'rovi</li>
         </ul>
-        <button class="buy-btn" onclick="sendPayment('Cobalt', 240)">SOTIB OLISH</button>
+        <button class="buy-btn" onclick="pay('Cobalt', 240)">SOTIB OLISH</button>
     </div>
 
     <div class="card">
         <div class="badge">AKSIYA -33%</div>
-        <div class="card-title" style="color: #45aaf2;">Gentra</div>
-        <div class="price"><span class="old-price">300 000</span>200 000 so'm</div>
+        <div class="title" style="color: #3498db;">Gentra</div>
+        <div class="price-row">
+            <span class="old-price">300 000</span>
+            <span class="current-price">200 000 so'm</span>
+        </div>
         <ul class="feature-list">
-            <li>540 Jami Token</li>
-            <li>45 ta Kling Video</li>
-            <li>67 ta Sora/Veo Video</li>
-            <li>360 ta Musiqa</li>
-            <li>1080 ta Nano Banana Pro rasm</li>
-            <li>400 ta GPT/Gemini so'rovi</li>
+            <li class="feature-item">540 Jami Token</li>
+            <li class="feature-item">45 ta Kling Video</li>
+            <li class="feature-item">67 ta Sora/Veo Video</li>
+            <li class="feature-item">360 ta Musiqa</li>
+            <li class="feature-item">1080 ta Nano Banana Pro rasm</li>
+            <li class="feature-item">400 ta GPT/Gemini so'rovi</li>
         </ul>
-        <button class="buy-btn" style="background: #45aaf2;" onclick="sendPayment('Gentra', 540)">SOTIB OLISH</button>
+        <button class="buy-btn" style="background: #2980b9;" onclick="pay('Gentra', 540)">SOTIB OLISH</button>
     </div>
 
     <div class="card">
-        <div class="badge">VIP CHEGIRMA</div>
-        <div class="card-title" style="color: #eb3b5a;">Malibu</div>
-        <div class="price"><span class="old-price">750 000</span>500 000 so'm</div>
+        <div class="badge">VIP STATUS</div>
+        <div class="title" style="color: #e74c3c;">Malibu</div>
+        <div class="price-row">
+            <span class="old-price">750 000</span>
+            <span class="current-price">500 000 so'm</span>
+        </div>
         <ul class="feature-list">
-            <li>1440 Jami Token</li>
-            <li>120 ta Kling Video</li>
-            <li>180 ta Sora/Veo Video</li>
-            <li>960 ta Musiqa</li>
-            <li>2880 ta Nano Banana Pro rasm</li>
-            <li>🔥 Cheksiz GPT/Gemini</li>
+            <li class="feature-item">1440 Jami Token</li>
+            <li class="feature-item">120 ta Kling Video</li>
+            <li class="feature-item">180 ta Sora/Veo Video</li>
+            <li class="feature-item">960 ta Musiqa</li>
+            <li class="feature-item">2880 ta Nano Banana Pro rasm</li>
+            <li class="feature-item">🔥 Cheksiz GPT/Gemini</li>
         </ul>
-        <button class="buy-btn" style="background: #eb3b5a;" onclick="sendPayment('Malibu', 1440)">SOTIB OLISH</button>
+        <button class="buy-btn" style="background: #c0392b;" onclick="pay('Malibu', 1440)">SOTIB OLISH</button>
     </div>
 </div>
 
 <script>
     const tg = window.Telegram.WebApp;
     tg.expand();
-    function sendPayment(tariff, tokens) {
-        tg.sendData(JSON.stringify({tariff: tariff, tokens: tokens}));
+    function pay(name, tokens) {
+        tg.sendData(JSON.stringify({tariff: name, tokens: tokens}));
         tg.close();
     }
 </script>
