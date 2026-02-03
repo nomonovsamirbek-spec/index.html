@@ -71,7 +71,7 @@
                 <div class="price-container">
                     <span class="old-price">150 000</span>
                     <span class="current-price">98 000 UZS</span>
-                    <span class="promo-text">* Skidka faqat bugun amal qiladi</span>
+                    <span class="promo-text">* Skidka</span>
                     <button class="buy-btn" onclick="p('Cobalt', 240)">SOTIB OLISH</button>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                 <div class="price-container">
                     <span class="old-price">300 000</span>
                     <span class="current-price">200 000 UZS</span>
-                    <span class="promo-text">* Eng ko'p tanlanadigan tarif</span>
+                    <span class="promo-text">* Skidka</span>
                     <button class="buy-btn" style="background:#3498db" onclick="p('Gentra', 540)">SOTIB OLISH</button>
                 </div>
             </div>
@@ -115,7 +115,7 @@
                 <div class="price-container">
                     <span class="old-price">750 000</span>
                     <span class="current-price">500 000 UZS</span>
-                    <span class="promo-text">* VIP qo'llab-quvvatlash bilan</span>
+                    <span class="promo-text">* Skidka</span>
                     <button class="buy-btn" style="background:#e74c3c" onclick="p('Malibu', 1440)">SOTIB OLISH</button>
                 </div>
             </div>
@@ -128,12 +128,10 @@
     const s = document.getElementById('s');
     const pg = document.getElementById('pg');
     
-    // WebApp-ni to'liq tayyorlash va kengaytirish
     tg.ready();
     tg.expand();
-    tg.enableClosingConfirmation(); // Tasodifiy yopilib ketishning oldini olish
+    tg.enableClosingConfirmation();
 
-    // Sahifa ko'rsatkichi (Scroll bo'lganda yangilanadi)
     s.addEventListener('scroll', () => {
         const i = Math.round(s.scrollLeft / s.clientWidth) + 1;
         if(i >= 1 && i <= 3) pg.innerText = i;
@@ -144,22 +142,18 @@
     }
 
     function p(n, t) {
-        // Diagnostika uchun alert (ishlab bo'lgach o'chirishingiz mumkin)
-        console.log("To'lov so'rovi yuborilmoqda: " + n);
+        alert("Botga signal ketmoqda...");
 
-        // Signalni botga JSON formatida yuborish
         const data = JSON.stringify({
             tariff: n, 
             tokens: t
         });
         
-        // Telegram botga ma'lumot uzatish
         tg.sendData(data);
         
-        // Signal botga yetib borishi uchun biroz kutib, keyin yopamiz
         setTimeout(() => { 
             tg.close(); 
-        }, 150); 
+        }, 150);
     }
 </script>
 </body>
