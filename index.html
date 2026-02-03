@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anor AI - Tariflar</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: sans-serif; background-color: #1c1c1c; color: white; padding: 20px; text-align: center; }
+        .card { background: #2d2d2d; border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid #444; }
+        .cobalt { border-left: 5px solid #3498db; }
+        .gentra { border-left: 5px solid #9b59b6; }
+        .malibu { border-left: 5px solid #e74c3c; }
+        h2 { margin: 0; font-size: 24px; }
+        p { color: #bbb; margin: 10px 0; }
+        .price { font-size: 20px; font-weight: bold; color: #00ffcc; }
+        .btn { background: #00ffcc; color: black; border: none; padding: 10px 20px; border-radius: 10px; font-weight: bold; width: 100%; margin-top: 15px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Anor AI Tariflari</h1>
+
+    <div class="card cobalt">
+        <h2>🚙 Cobalt</h2>
+        <p>1,000 токен + Асосий АИ</p>
+        <div class="price">98,000 сўм</div>
+        <button class="btn" onclick="buy('cobalt')">Sotib olish</button>
+    </div>
+
+    <div class="card gentra">
+        <h2>🚗 Gentra</h2>
+        <p>2,200 токен + Тезкор АИ</p>
+        <div class="price">200,000 сўм</div>
+        <button class="btn" onclick="buy('gentra')">Sotib olish</button>
+    </div>
+
+    <div class="card malibu">
+        <h2>🚀 Malibu</h2>
+        <p>6,000 токен + Видео & VIP</p>
+        <div class="price">500,000 сўм</div>
+        <button class="btn" onclick="buy('malibu')">Sotib olish</button>
+    </div>
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand(); // Ойнани тўлиқ экран қилиш
+
+        function buy(tariff) {
+            // Ботга қайси тариф танланганини юбориш
+            tg.sendData(tariff);
+            tg.close(); // Иловани ёпиш
+        }
+    </script>
+</body>
+</html>
