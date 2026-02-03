@@ -6,20 +6,18 @@
     <title>Anor AI - Sotib olish</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f0f0f; color: white; margin: 0; display: flex; align-items: center; height: 100vh; overflow: hidden; }
-        .slider-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; width: 100%; padding: 20px 0; scrollbar-width: none; }
+        body { font-family: sans-serif; background-color: #0f0f0f; color: white; margin: 0; padding: 0; }
+        .slider-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px 0; scrollbar-width: none; }
         .slider-container::-webkit-scrollbar { display: none; }
-        .card { flex: 0 0 85%; margin: 0 7.5%; background: #1a1a1a; border-radius: 20px; padding: 20px; scroll-snap-align: center; border: 1px solid #333; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card { flex: 0 0 85%; margin: 0 7.5%; background: #1a1a1a; border-radius: 20px; padding: 20px; scroll-snap-align: center; border: 1px solid #333; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5); box-sizing: border-box; }
         .badge { position: absolute; top: 15px; right: 15px; background: #ff3b3b; color: white; padding: 5px 10px; border-radius: 10px; font-size: 12px; font-weight: bold; }
-        .card-title { font-size: 24px; font-weight: bold; margin-bottom: 10px; color: #a55eea; }
-        .price { font-size: 32px; font-weight: bold; margin: 10px 0; }
+        .card-title { font-size: 24px; font-weight: bold; margin-bottom: 10px; color: #a55eea; text-align: left; }
+        .price { font-size: 30px; font-weight: bold; margin: 10px 0; text-align: left; }
         .old-price { font-size: 18px; text-decoration: line-through; color: #888; margin-right: 10px; }
-        .feature-list { list-style: none; padding: 0; margin: 20px 0; }
-        .feature-item { margin: 10px 0; font-size: 14px; display: flex; align-items: center; }
+        .feature-list { list-style: none; padding: 0; margin: 20px 0; text-align: left; }
+        .feature-item { margin: 12px 0; font-size: 14px; display: flex; align-items: center; }
         .feature-item::before { content: '✅'; margin-right: 10px; }
-        .buy-btn { width: 100%; padding: 15px; border-radius: 15px; border: none; background: #a55eea; color: white; font-size: 18px; font-weight: bold; cursor: pointer; transition: transform 0.2s; }
-        .buy-btn:active { transform: scale(0.95); }
-        .footer-info { text-align: center; font-size: 10px; color: #555; margin-top: 10px; }
+        .buy-btn { width: 100%; padding: 15px; border-radius: 15px; border: none; background: #a55eea; color: white; font-size: 18px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -30,12 +28,12 @@
         <div class="card-title">Cobalt</div>
         <div class="price"><span class="old-price">150 000</span>98 000 so'm</div>
         <ul class="feature-list">
-            <li class="feature-item">240 Jami Token</li>
-            <li class="feature-item">20 ta Kling Video</li>
-            <li class="feature-item">30 ta Sora/Veo Video</li>
-            <li class="feature-item">160 ta Musiqa</li>
-            <li class="feature-item">480 ta Nano Banana Pro rasm</li>
-            <li class="feature-item">150 ta GPT/Gemini so'rovi</li>
+            <li>240 Jami Token</li>
+            <li>20 ta Kling Video</li>
+            <li>30 ta Sora/Veo Video</li>
+            <li>160 ta Musiqa</li>
+            <li>480 ta Nano Banana Pro rasm</li>
+            <li>150 ta GPT/Gemini so'rovi</li>
         </ul>
         <button class="buy-btn" onclick="sendPayment('Cobalt', 240)">SOTIB OLISH</button>
     </div>
@@ -45,12 +43,12 @@
         <div class="card-title" style="color: #45aaf2;">Gentra</div>
         <div class="price"><span class="old-price">300 000</span>200 000 so'm</div>
         <ul class="feature-list">
-            <li class="feature-item">540 Jami Token</li>
-            <li class="feature-item">45 ta Kling Video</li>
-            <li class="feature-item">67 ta Sora/Veo Video</li>
-            <li class="feature-item">360 ta Musiqa</li>
-            <li class="feature-item">1080 ta Nano Banana Pro rasm</li>
-            <li class="feature-item">400 ta GPT/Gemini so'rovi</li>
+            <li>540 Jami Token</li>
+            <li>45 ta Kling Video</li>
+            <li>67 ta Sora/Veo Video</li>
+            <li>360 ta Musiqa</li>
+            <li>1080 ta Nano Banana Pro rasm</li>
+            <li>400 ta GPT/Gemini so'rovi</li>
         </ul>
         <button class="buy-btn" style="background: #45aaf2;" onclick="sendPayment('Gentra', 540)">SOTIB OLISH</button>
     </div>
@@ -60,12 +58,12 @@
         <div class="card-title" style="color: #eb3b5a;">Malibu</div>
         <div class="price"><span class="old-price">750 000</span>500 000 so'm</div>
         <ul class="feature-list">
-            <li class="feature-item">1440 Jami Token</li>
-            <li class="feature-item">120 ta Kling Video</li>
-            <li class="feature-item">180 ta Sora/Veo Video</li>
-            <li class="feature-item">960 ta Musiqa</li>
-            <li class="feature-item">2880 ta Nano Banana Pro rasm</li>
-            <li class="feature-item">🔥 Cheksiz GPT/Gemini</li>
+            <li>1440 Jami Token</li>
+            <li>120 ta Kling Video</li>
+            <li>180 ta Sora/Veo Video</li>
+            <li>960 ta Musiqa</li>
+            <li>2880 ta Nano Banana Pro rasm</li>
+            <li>🔥 Cheksiz GPT/Gemini</li>
         </ul>
         <button class="buy-btn" style="background: #eb3b5a;" onclick="sendPayment('Malibu', 1440)">SOTIB OLISH</button>
     </div>
@@ -74,16 +72,10 @@
 <script>
     const tg = window.Telegram.WebApp;
     tg.expand();
-
     function sendPayment(tariff, tokens) {
-        const data = {
-            tariff: tariff,
-            tokens: tokens
-        };
-        tg.sendData(JSON.stringify(data)); // Botga ma'lumot yuborish
+        tg.sendData(JSON.stringify({tariff: tariff, tokens: tokens}));
         tg.close();
     }
 </script>
-
 </body>
 </html>
