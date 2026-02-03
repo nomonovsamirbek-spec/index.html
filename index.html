@@ -128,11 +128,12 @@
     const s = document.getElementById('s');
     const pg = document.getElementById('pg');
     
-    // WebApp-ni to'liq kengaytirish
+    // WebApp-ni to'liq tayyorlash va kengaytirish
     tg.ready();
     tg.expand();
+    tg.enableClosingConfirmation(); // Tasodifiy yopilib ketishning oldini olish
 
-    // Sahifa ko'rsatkichi
+    // Sahifa ko'rsatkichi (Scroll bo'lganda yangilanadi)
     s.addEventListener('scroll', () => {
         const i = Math.round(s.scrollLeft / s.clientWidth) + 1;
         if(i >= 1 && i <= 3) pg.innerText = i;
@@ -143,14 +144,22 @@
     }
 
     function p(n, t) {
-        // Signalni botga yuborish
-        const data = JSON.stringify({tariff: n, tokens: t});
+        // Diagnostika uchun alert (ishlab bo'lgach o'chirishingiz mumkin)
+        console.log("To'lov so'rovi yuborilmoqda: " + n);
+
+        // Signalni botga JSON formatida yuborish
+        const data = JSON.stringify({
+            tariff: n, 
+            tokens: t
+        });
+        
+        // Telegram botga ma'lumot uzatish
         tg.sendData(data);
         
-        // Signal botga yetishi uchun biroz kutamiz
+        // Signal botga yetib borishi uchun biroz kutib, keyin yopamiz
         setTimeout(() => { 
             tg.close(); 
-        }, 300); 
+        }, 150); 
     }
 </script>
 </body>
