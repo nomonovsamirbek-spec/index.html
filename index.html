@@ -13,13 +13,11 @@
 
         .slider-wrapper { position: relative; width: 100vw; display: flex; align-items: center; justify-content: center; }
         
-        /* Gorizontal karusel mantiqi */
         .slider-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; width: 100vw; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; padding: 10px 0; }
         .slider-container::-webkit-scrollbar { display: none; }
 
         .card { min-width: 82vw; max-width: 82vw; margin: 0 9vw; background: #161616; border-radius: 28px; padding: 30px 20px; scroll-snap-align: center; border: 1px solid #252525; box-sizing: border-box; display: flex; flex-direction: column; position: relative; transition: transform 0.3s; }
         
-        /* Token bo'limi (Tepada) */
         .token-box { display: flex; background: #222; border-radius: 50px; padding: 5px; margin-bottom: 25px; align-self: center; }
         .token-item { padding: 8px 20px; border-radius: 40px; font-size: 13px; font-weight: bold; text-transform: uppercase; }
         .token-active { background: #a55eea; color: #fff; box-shadow: 0 0 15px rgba(165, 94, 234, 0.4); }
@@ -32,7 +30,6 @@
         .feature-item { margin: 12px 0; font-size: 14px; color: #eee; display: flex; align-items: center; font-weight: 500; }
         .feature-item::before { content: '+'; margin-right: 12px; color: #a55eea; font-size: 18px; font-weight: bold; }
 
-        /* Narx bo'limi (Pastda) */
         .price-container { margin-top: auto; padding-top: 20px; border-top: 1px solid #222; text-align: center; }
         .old-price { font-size: 16px; text-decoration: line-through; color: #555; margin-right: 8px; }
         .current-price { font-size: 28px; font-weight: 800; color: #fff; }
@@ -41,7 +38,6 @@
         .buy-btn { width: 100%; padding: 16px; border-radius: 20px; border: none; background: #3fe9d6; color: #000; font-size: 18px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 15px; box-shadow: 0 5px 15px rgba(63, 233, 214, 0.2); }
         .buy-btn:active { transform: scale(0.96); opacity: 0.9; }
 
-        /* Kompyuter uchun strelkalar va moslashuv */
         .nav-btn { position: absolute; background: rgba(255,255,255,0.05); border: none; color: #fff; width: 45px; height: 45px; border-radius: 50%; cursor: pointer; z-index: 100; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
         .nav-btn:hover { background: rgba(255,255,255,0.15); }
         .prev { left: 20px; } .next { right: 20px; }
@@ -131,9 +127,12 @@
     const tg = window.Telegram.WebApp;
     const s = document.getElementById('s');
     const pg = document.getElementById('pg');
+    
+    // WebApp-ni to'liq kengaytirish
+    tg.ready();
     tg.expand();
 
-    // Sahifa ko'rsatkichi va surish mantiqi
+    // Sahifa ko'rsatkichi
     s.addEventListener('scroll', () => {
         const i = Math.round(s.scrollLeft / s.clientWidth) + 1;
         if(i >= 1 && i <= 3) pg.innerText = i;
@@ -144,8 +143,14 @@
     }
 
     function p(n, t) {
-        tg.sendData(JSON.stringify({tariff: n, tokens: t}));
-        setTimeout(() => { tg.close(); }, 150);
+        // Signalni botga yuborish
+        const data = JSON.stringify({tariff: n, tokens: t});
+        tg.sendData(data);
+        
+        // Signal botga yetishi uchun biroz kutamiz
+        setTimeout(() => { 
+            tg.close(); 
+        }, 300); 
     }
 </script>
 </body>
