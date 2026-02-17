@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Anor AI — Tariflar</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{--bg:var(--tg-theme-bg-color,#fff);--bg2:var(--tg-theme-secondary-bg-color,#f0f0f5);
+--txt:var(--tg-theme-text-color,#000);--hint:var(--tg-theme-hint-color,#999);
+--btn:var(--tg-theme-button-color,#3390ec);--btnt:var(--tg-theme-button-text-color,#fff)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+background:var(--bg);color:var(--txt);overflow-x:hidden;padding-bottom:120px}
+.tabs{display:flex;gap:4px;padding:10px 12px;position:sticky;top:0;background:var(--bg);z-index:10}
+.tab{flex:1;padding:10px 4px;text-align:center;border-radius:12px;font-size:13px;font-weight:700;
+cursor:pointer;background:var(--bg2);color:var(--hint);transition:.2s}
+.tab.active{background:var(--btn);color:var(--btnt)}
+.section{display:none}.section.active{display:block}
+
+/* YONGA — horizontal scroll */
+.scroll-wrap{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+padding:8px 12px;display:flex;gap:10px}
+.scroll-wrap::-webkit-scrollbar{display:none}
+.t-card{min-width:280px;max-width:300px;scroll-snap-align:start;background:var(--bg2);
+border-radius:16px;padding:16px;border:2.5px solid transparent;transition:.2s;flex-shrink:0;position:relative}
+.t-card.selected{border-color:var(--btn);transform:scale(1.02)}
+.t-card .badge{position:absolute;top:-8px;right:12px;background:#ff3b30;color:#fff;
+font-size:10px;font-weight:800;padding:3px 8px;border-radius:8px;text-transform:uppercase}
+.t-card .badge.green{background:#34c759}
+.t-card .badge.gold{background:linear-gradient(135deg,#f7c948,#e6a817);color:#333}
+.t-name{font-size:18px;font-weight:800;margin-bottom:2px}
+.t-price{font-size:22px;font-weight:800;color:var(--btn)}
+.t-price .old{font-size:14px;text-decoration:line-through;color:var(--hint);margin-right:4px}
+.t-tokens{font-size:14px;font-weight:700;margin:6px 0}
+.t-stats{display:flex;gap:8px;margin:8px 0}
+.stat{flex:1;background:var(--bg);border-radius:10px;padding:8px;text-align:center}
+.stat-num{font-size:16px;font-weight:800}
+.stat-label{font-size:10px;color:var(--hint)}
+.t-models{font-size:11px;color:var(--hint);line-height:1.5;margin-top:8px;border-top:1px solid rgba(128,128,128,0.2);padding-top:8px}
+.t-models b{color:var(--txt)}
+
+/* TOKEN CARDS */
+.tok-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 12px}
+.tok-card{background:var(--bg2);border-radius:14px;padding:14px;cursor:pointer;border:2.5px solid transparent;transition:.2s}
+.tok-card.selected{border-color:var(--btn)}
+.tok-name{font-weight:700;font-size:15px}
+.tok-price{font-weight:800;font-size:14px;color:var(--btn);margin-top:4px}
+.tok-desc{font-size:11px;color:var(--hint);margin-top:2px}
+
+/* PAYMENT */
+.pay-section{padding:0 12px;margin-top:12px}
+.pay-section h3{font-size:13px;color:var(--hint);font-weight:600;margin-bottom:8px}
+.methods{display:flex;gap:6px}
+.method{flex:1;padding:11px 4px;text-align:center;border-radius:10px;font-size:13px;font-weight:600;
+cursor:pointer;background:var(--bg2);border:2px solid transparent;transition:.15s}
+.method.sel{border-color:var(--btn)}
+.card-box{background:var(--bg2);border-radius:12px;padding:14px;text-align:center;margin:10px 0;cursor:pointer}
+.card-num{font-size:20px;font-weight:800;letter-spacing:2px}
+.card-hint{font-size:11px;color:var(--hint);margin-top:4px}
+.btn{display:block;width:100%;padding:15px;border:none;border-radius:14px;font-size:16px;font-weight:800;
+cursor:pointer;background:var(--btn);color:var(--btnt);margin-top:10px;transition:.15s}
+.btn:active{transform:scale(0.98)}.btn:disabled{opacity:.4}
+.note{font-size:11px;color:var(--hint);text-align:center;margin-top:6px}
+.hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<div class="tabs">
+  <div class="tab active" onclick="sw('tariffs')">💳 Tariflar</div>
+  <div class="tab" onclick="sw('tokens')">🎫 Token</div>
+</div>
+
+<!-- TARIFLAR — YONGA SCROLL -->
+<div id="tariffs" class="section active">
+  <div class="scroll-wrap" id="tariff-scroll">
+
+    <div class="t-card" onclick="sel('start')">
+      <div class="t-name">⭐ Start</div>
+      <div class="t-price">49 000 <small>so'm</small></div>
+      <div class="t-tokens">💰 300 token</div>
+      <div class="t-stats">
+        <div class="stat"><div class="stat-num">100</div><div class="stat-label">🎨 rasm</div></div>
+        <div class="stat"><div class="stat-num">10</div><div class="stat-label">🎬 video</div></div>
+      </div>
+      <div class="t-models"><b>🎨 3 rasm model</b> + <b>🎬 7 video model</b><br>Qwen 3tok · Banana 4tok · GPT 8tok<br>Kling · Veo · Sora — barchasi!</div>
+    </div>
+
+    <div class="t-card" onclick="sel('standard')">
+      <div class="badge green">MASHHUR</div>
+      <div class="t-name">🔥 Standart</div>
+      <div class="t-price"><span class="old">120 000</span>99 000</div>
+      <div class="t-tokens">💰 700 token</div>
+      <div class="t-stats">
+        <div class="stat"><div class="stat-num">233</div><div class="stat-label">🎨 rasm</div></div>
+        <div class="stat"><div class="stat-num">23</div><div class="stat-label">🎬 video</div></div>
+      </div>
+      <div class="t-models"><b>🎨 3 rasm</b> + <b>🎬 7 video</b> — BARCHASI<br>🔊 Audio · 📺 1080p · 🎵 Musiqa<br>⚡ Limitsiz generatsiya!</div>
+    </div>
+
+    <div class="t-card" onclick="sel('pro')">
+      <div class="badge">-20%</div>
+      <div class="t-name">💎 Pro</div>
+      <div class="t-price"><span class="old">249 000</span>199 000</div>
+      <div class="t-tokens">💰 1 500 token</div>
+      <div class="t-stats">
+        <div class="stat"><div class="stat-num">500</div><div class="stat-label">🎨 rasm</div></div>
+        <div class="stat"><div class="stat-num">50</div><div class="stat-label">🎬 video</div></div>
+      </div>
+      <div class="t-models"><b>Barcha model</b> ochiq!<br>Veo Quality 250tok · Kling 3.0 1080p<br>💼 Biznes va kontent uchun</div>
+    </div>
+
+    <div class="t-card" onclick="sel('business')">
+      <div class="badge">-20%</div>
+      <div class="t-name">🏢 Business</div>
+      <div class="t-price"><span class="old">499 000</span>399 000</div>
+      <div class="t-tokens">💰 3 500 token</div>
+      <div class="t-stats">
+        <div class="stat"><div class="stat-num">1166</div><div class="stat-label">🎨 rasm</div></div>
+        <div class="stat"><div class="stat-num">116</div><div class="stat-label">🎬 video</div></div>
+      </div>
+      <div class="t-models"><b>Jamoalar uchun!</b><br>3500 token — oy davomida yetarli<br>🏢 Agentlik va studiyalar uchun</div>
+    </div>
+
+    <div class="t-card" onclick="sel('unlimited')">
+      <div class="badge gold">👑 TOP</div>
+      <div class="t-name">👑 Unlimited</div>
+      <div class="t-price"><span class="old">799 000</span>649 000</div>
+      <div class="t-tokens">💰 8 000 token</div>
+      <div class="t-stats">
+        <div class="stat"><div class="stat-num">2666</div><div class="stat-label">🎨 rasm</div></div>
+        <div class="stat"><div class="stat-num">266</div><div class="stat-label">🎬 video</div></div>
+      </div>
+      <div class="t-models"><b>Eng katta paket!</b><br>8000 token — cheksiz imkoniyat<br>👑 Professional va studiyalar uchun</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOKEN PAKETLARI -->
+<div id="tokens" class="section">
+  <div class="tok-grid">
+    <div class="tok-card" onclick="sel('tokens_50')">
+      <div class="tok-name">🎫 50 tok</div>
+      <div class="tok-price">9 000 so'm</div>
+      <div class="tok-desc">~12 rasm / 1 video</div>
+    </div>
+    <div class="tok-card" onclick="sel('tokens_150')">
+      <div class="tok-name">🎫 150 tok</div>
+      <div class="tok-price">25 000 so'm</div>
+      <div class="tok-desc">~37 rasm / 3 video</div>
+    </div>
+    <div class="tok-card" onclick="sel('tokens_500')">
+      <div class="tok-name">🎫 500 tok</div>
+      <div class="tok-price">69 000 so'm</div>
+      <div class="tok-desc">~125 rasm / 10 video</div>
+    </div>
+    <div class="tok-card" onclick="sel('tokens_1200')">
+      <div class="tok-name">🎫 1200 tok</div>
+      <div class="tok-price">139 000 so'm</div>
+      <div class="tok-desc">~300 rasm / 25 video</div>
+    </div>
+  </div>
+</div>
+
+<!-- TO'LOV -->
+<div class="pay-section hidden" id="pay-area">
+  <h3>💳 To'lov usuli</h3>
+  <div class="methods">
+    <div class="method" onclick="meth('karta')">💳 Karta</div>
+    <div class="method" onclick="meth('click')">Click</div>
+    <div class="method" onclick="meth('payme')">Payme</div>
+  </div>
+  <div id="card-area" class="hidden">
+    <div class="card-box" onclick="copyCard()">
+      <div class="card-num" id="card-display">Yuklanmoqda...</div>
+      <div class="card-hint">👆 Bosib nusxalang</div>
+    </div>
+  </div>
+  <button class="btn hidden" id="pay-btn" onclick="pay()">✅ To'ladim — <span id="btn-price"></span></button>
+  <p class="note hidden" id="pay-note">⚠️ AYNAN ko'rsatilgan summani o'tkazing!<br>Bot avtomatik tekshiradi.</p>
+</div>
+
+<script>
+const tg=window.Telegram.WebApp;
+tg.expand();
+tg.enableClosingConfirmation();
+
+const P={start:49000,standard:99000,pro:199000,business:399000,unlimited:649000,
+  tokens_50:9000,tokens_150:25000,tokens_500:69000,tokens_1200:139000};
+const N={start:"⭐ Start",standard:"🔥 Standart",pro:"💎 Pro",business:"🏢 Business",unlimited:"👑 Unlimited",
+  tokens_50:"🎫 50 tok",tokens_150:"🎫 150 tok",tokens_500:"🎫 500 tok",tokens_1200:"🎫 1200 tok"};
+
+let pk=null,mt=null;
+const $=id=>document.getElementById(id);
+const fmt=n=>n.toLocaleString('uz-UZ').replace(/,/g,' ');
+
+function sw(tab){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',(tab==='tariffs'?i===0:i===1)));
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  $(tab).classList.add('active');
+  reset();
+}
+
+function sel(key){
+  pk=key; mt=null;
+  document.querySelectorAll('.t-card,.tok-card').forEach(c=>c.classList.remove('selected'));
+  if(event&&event.currentTarget) event.currentTarget.classList.add('selected');
+  $('pay-area').classList.remove('hidden');
+  document.querySelectorAll('.method').forEach(m=>m.classList.remove('sel'));
+  $('card-area').classList.add('hidden');
+  $('pay-btn').classList.add('hidden');
+  $('pay-note').classList.add('hidden');
+}
+
+function meth(m){
+  mt=m;
+  document.querySelectorAll('.method').forEach(el=>el.classList.remove('sel'));
+  if(event&&event.currentTarget) event.currentTarget.classList.add('sel');
+  if(m==='karta'){
+    $('card-area').classList.remove('hidden');
+    // karta raqamni .env dan olib qoyish — bot orqali
+    $('card-display').textContent=tg.initDataUnsafe?.start_param||'8600 0000 0000 0000';
+  } else {
+    $('card-area').classList.add('hidden');
+  }
+  $('pay-btn').classList.remove('hidden');
+  $('pay-note').classList.remove('hidden');
+  $('btn-price').textContent=fmt(P[pk])+' so\'m';
+}
+
+function copyCard(){
+  const num=$('card-display').textContent.replace(/\s/g,'');
+  navigator.clipboard.writeText(num).then(()=>tg.showAlert('✅ Nusxalandi!')).catch(()=>{});
+}
+
+function pay(){
+  if(!pk||!mt)return;
+  tg.sendData(JSON.stringify({action:"payment",package:pk,method:mt,name:N[pk],price:P[pk]}));
+}
+
+function reset(){
+  pk=null;mt=null;
+  document.querySelectorAll('.t-card,.tok-card,.method').forEach(c=>{c.classList.remove('selected');c.classList.remove('sel')});
+  $('pay-area').classList.add('hidden');
+}
+
+// Karta raqamni URL parametrdan olish (agar bot yuborsa)
+const params=new URLSearchParams(window.location.search);
+const cardFromUrl=params.get('card');
+if(cardFromUrl){
+  $('card-display').textContent=cardFromUrl.replace(/(\d{4})/g,'$1 ').trim();
+}
+</script>
+</body>
+</html>
