@@ -17,38 +17,32 @@ background:var(--bg);color:var(--txt);overflow-x:hidden;padding-bottom:120px}
 cursor:pointer;background:var(--bg2);color:var(--hint);transition:.2s}
 .tab.active{background:var(--btn);color:var(--btnt)}
 .section{display:none}.section.active{display:block}
-
-/* YONGA — horizontal scroll */
 .scroll-wrap{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-padding:8px 12px;display:flex;gap:10px}
+padding:12px;display:flex;gap:10px}
 .scroll-wrap::-webkit-scrollbar{display:none}
-.t-card{min-width:280px;max-width:300px;scroll-snap-align:start;background:var(--bg2);
+.t-card{min-width:280px;max-width:305px;scroll-snap-align:start;background:var(--bg2);
 border-radius:16px;padding:16px;border:2.5px solid transparent;transition:.2s;flex-shrink:0;position:relative}
 .t-card.selected{border-color:var(--btn);transform:scale(1.02)}
-.t-card .badge{position:absolute;top:-8px;right:12px;background:#ff3b30;color:#fff;
+.badge{position:absolute;top:-8px;right:12px;background:#ff3b30;color:#fff;
 font-size:10px;font-weight:800;padding:3px 8px;border-radius:8px;text-transform:uppercase}
-.t-card .badge.green{background:#34c759}
-.t-card .badge.gold{background:linear-gradient(135deg,#f7c948,#e6a817);color:#333}
-.t-name{font-size:18px;font-weight:800;margin-bottom:2px}
+.badge.green{background:#34c759}
+.badge.gold{background:linear-gradient(135deg,#f7c948,#e6a817);color:#333}
+.t-name{font-size:18px;font-weight:800;margin-bottom:4px}
 .t-price{font-size:22px;font-weight:800;color:var(--btn)}
-.t-price .old{font-size:14px;text-decoration:line-through;color:var(--hint);margin-right:4px}
+.t-old{font-size:15px;font-weight:700;color:#ff3b30;text-decoration:line-through;margin-bottom:2px}
 .t-tokens{font-size:14px;font-weight:700;margin:6px 0}
 .t-stats{display:flex;gap:8px;margin:8px 0}
 .stat{flex:1;background:var(--bg);border-radius:10px;padding:8px;text-align:center}
 .stat-num{font-size:16px;font-weight:800}
 .stat-label{font-size:10px;color:var(--hint)}
-.t-models{font-size:11px;color:var(--hint);line-height:1.5;margin-top:8px;border-top:1px solid rgba(128,128,128,0.2);padding-top:8px}
-.t-models b{color:var(--txt)}
-
-/* TOKEN CARDS */
+.t-models{font-size:11px;color:var(--hint);line-height:1.7;margin-top:8px;border-top:1px solid rgba(128,128,128,0.15);padding-top:8px}
+.t-models b{color:var(--txt);font-size:12px}
 .tok-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 12px}
 .tok-card{background:var(--bg2);border-radius:14px;padding:14px;cursor:pointer;border:2.5px solid transparent;transition:.2s}
 .tok-card.selected{border-color:var(--btn)}
 .tok-name{font-weight:700;font-size:15px}
 .tok-price{font-weight:800;font-size:14px;color:var(--btn);margin-top:4px}
 .tok-desc{font-size:11px;color:var(--hint);margin-top:2px}
-
-/* PAYMENT */
 .pay-section{padding:0 12px;margin-top:12px}
 .pay-section h3{font-size:13px;color:var(--hint);font-weight:600;margin-bottom:8px}
 .methods{display:flex;gap:6px}
@@ -60,7 +54,7 @@ cursor:pointer;background:var(--bg2);border:2px solid transparent;transition:.15
 .card-hint{font-size:11px;color:var(--hint);margin-top:4px}
 .btn{display:block;width:100%;padding:15px;border:none;border-radius:14px;font-size:16px;font-weight:800;
 cursor:pointer;background:var(--btn);color:var(--btnt);margin-top:10px;transition:.15s}
-.btn:active{transform:scale(0.98)}.btn:disabled{opacity:.4}
+.btn:active{transform:scale(0.98)}
 .note{font-size:11px;color:var(--hint);text-align:center;margin-top:6px}
 .hidden{display:none!important}
 </style>
@@ -72,94 +66,166 @@ cursor:pointer;background:var(--btn);color:var(--btnt);margin-top:10px;transitio
   <div class="tab" onclick="sw('tokens')">🎫 Token</div>
 </div>
 
-<!-- TARIFLAR — YONGA SCROLL -->
 <div id="tariffs" class="section active">
-  <div class="scroll-wrap" id="tariff-scroll">
+  <div class="scroll-wrap">
 
-    <div class="t-card" onclick="sel('start')">
+    <!-- START -->
+    <div class="t-card" onclick="sel('start',this)">
       <div class="t-name">⭐ Start</div>
-      <div class="t-price">49 000 <small>so'm</small></div>
+      <div class="t-price">49 000 <small>so'm/oy</small></div>
       <div class="t-tokens">💰 300 token</div>
       <div class="t-stats">
-        <div class="stat"><div class="stat-num">100</div><div class="stat-label">🎨 rasm</div></div>
-        <div class="stat"><div class="stat-num">10</div><div class="stat-label">🎬 video</div></div>
+        <div class="stat"><div class="stat-num">~100</div><div class="stat-label">rasm</div></div>
+        <div class="stat"><div class="stat-num">~7</div><div class="stat-label">video</div></div>
       </div>
-      <div class="t-models"><b>🎨 3 rasm model</b> + <b>🎬 7 video model</b><br>Qwen 3tok · Banana 4tok · GPT 8tok<br>Kling · Veo · Sora — barchasi!</div>
+      <div class="t-models">
+        <b>🎨 Rasm modellari:</b><br>
+        Nano Banana (4 tok)<br>
+        GPT Image (8-16 tok)<br><br>
+        <b>🎬 Video modellari:</b><br>
+        Kling 2.5 Turbo (42-84 tok)<br>
+        Kling 2.6 (55-220 tok)<br>
+        Kling 3.0 (100-400 tok)<br>
+        Veo 3.1 Fast (60 tok)<br>
+        Veo 3.1 Quality (250 tok)<br>
+        Sora 2 Standard (30-35 tok)<br>
+        Sora 2 Pro (35-40 tok)
+      </div>
     </div>
 
-    <div class="t-card" onclick="sel('standard')">
+    <!-- STANDART -->
+    <div class="t-card" onclick="sel('standard',this)">
       <div class="badge green">MASHHUR</div>
       <div class="t-name">🔥 Standart</div>
-      <div class="t-price"><span class="old">120 000</span>99 000</div>
+      <div class="t-old">120 000 so'm</div>
+      <div class="t-price">99 000 <small>so'm/oy</small></div>
       <div class="t-tokens">💰 700 token</div>
       <div class="t-stats">
-        <div class="stat"><div class="stat-num">233</div><div class="stat-label">🎨 rasm</div></div>
-        <div class="stat"><div class="stat-num">23</div><div class="stat-label">🎬 video</div></div>
+        <div class="stat"><div class="stat-num">~233</div><div class="stat-label">rasm</div></div>
+        <div class="stat"><div class="stat-num">~16</div><div class="stat-label">video</div></div>
       </div>
-      <div class="t-models"><b>🎨 3 rasm</b> + <b>🎬 7 video</b> — BARCHASI<br>🔊 Audio · 📺 1080p · 🎵 Musiqa<br>⚡ Limitsiz generatsiya!</div>
+      <div class="t-models">
+        <b>🎨 Rasm modellari:</b><br>
+        Nano Banana (4 tok)<br>
+        GPT Image (8-16 tok)<br><br>
+        <b>🎬 Video modellari:</b><br>
+        Kling 2.5 Turbo (42-84 tok)<br>
+        Kling 2.6 (55-220 tok)<br>
+        Kling 3.0 (100-400 tok)<br>
+        Veo 3.1 Fast (60 tok)<br>
+        Veo 3.1 Quality (250 tok)<br>
+        Sora 2 Standard (30-35 tok)<br>
+        Sora 2 Pro (35-40 tok)<br><br>
+        ⚡ Limitsiz generatsiya!
+      </div>
     </div>
 
-    <div class="t-card" onclick="sel('pro')">
+    <!-- PRO -->
+    <div class="t-card" onclick="sel('pro',this)">
       <div class="badge">-20%</div>
       <div class="t-name">💎 Pro</div>
-      <div class="t-price"><span class="old">249 000</span>199 000</div>
+      <div class="t-old">249 000 so'm</div>
+      <div class="t-price">199 000 <small>so'm/oy</small></div>
       <div class="t-tokens">💰 1 500 token</div>
       <div class="t-stats">
-        <div class="stat"><div class="stat-num">500</div><div class="stat-label">🎨 rasm</div></div>
-        <div class="stat"><div class="stat-num">50</div><div class="stat-label">🎬 video</div></div>
+        <div class="stat"><div class="stat-num">~500</div><div class="stat-label">rasm</div></div>
+        <div class="stat"><div class="stat-num">~35</div><div class="stat-label">video</div></div>
       </div>
-      <div class="t-models"><b>Barcha model</b> ochiq!<br>Veo Quality 250tok · Kling 3.0 1080p<br>💼 Biznes va kontent uchun</div>
+      <div class="t-models">
+        <b>🎨 Rasm modellari:</b><br>
+        Nano Banana (4 tok)<br>
+        GPT Image (8-16 tok)<br><br>
+        <b>🎬 Video modellari:</b><br>
+        Kling 2.5 Turbo (42-84 tok)<br>
+        Kling 2.6 (55-220 tok)<br>
+        Kling 3.0 (100-400 tok)<br>
+        Veo 3.1 Fast (60 tok)<br>
+        Veo 3.1 Quality (250 tok)<br>
+        Sora 2 Standard (30-35 tok)<br>
+        Sora 2 Pro (35-40 tok)<br><br>
+        💼 Biznes va kontent uchun
+      </div>
     </div>
 
-    <div class="t-card" onclick="sel('business')">
+    <!-- BUSINESS -->
+    <div class="t-card" onclick="sel('business',this)">
       <div class="badge">-20%</div>
       <div class="t-name">🏢 Business</div>
-      <div class="t-price"><span class="old">499 000</span>399 000</div>
+      <div class="t-old">499 000 so'm</div>
+      <div class="t-price">399 000 <small>so'm/oy</small></div>
       <div class="t-tokens">💰 3 500 token</div>
       <div class="t-stats">
-        <div class="stat"><div class="stat-num">1166</div><div class="stat-label">🎨 rasm</div></div>
-        <div class="stat"><div class="stat-num">116</div><div class="stat-label">🎬 video</div></div>
+        <div class="stat"><div class="stat-num">~1166</div><div class="stat-label">rasm</div></div>
+        <div class="stat"><div class="stat-num">~83</div><div class="stat-label">video</div></div>
       </div>
-      <div class="t-models"><b>Jamoalar uchun!</b><br>3500 token — oy davomida yetarli<br>🏢 Agentlik va studiyalar uchun</div>
+      <div class="t-models">
+        <b>🎨 Rasm modellari:</b><br>
+        Nano Banana (4 tok)<br>
+        GPT Image (8-16 tok)<br><br>
+        <b>🎬 Video modellari:</b><br>
+        Kling 2.5 Turbo (42-84 tok)<br>
+        Kling 2.6 (55-220 tok)<br>
+        Kling 3.0 (100-400 tok)<br>
+        Veo 3.1 Fast (60 tok)<br>
+        Veo 3.1 Quality (250 tok)<br>
+        Sora 2 Standard (30-35 tok)<br>
+        Sora 2 Pro (35-40 tok)<br><br>
+        🏢 Jamoalar va agentliklar uchun
+      </div>
     </div>
 
-    <div class="t-card" onclick="sel('unlimited')">
+    <!-- UNLIMITED -->
+    <div class="t-card" onclick="sel('unlimited',this)">
       <div class="badge gold">👑 TOP</div>
       <div class="t-name">👑 Unlimited</div>
-      <div class="t-price"><span class="old">799 000</span>649 000</div>
+      <div class="t-old">799 000 so'm</div>
+      <div class="t-price">649 000 <small>so'm/oy</small></div>
       <div class="t-tokens">💰 8 000 token</div>
       <div class="t-stats">
-        <div class="stat"><div class="stat-num">2666</div><div class="stat-label">🎨 rasm</div></div>
-        <div class="stat"><div class="stat-num">266</div><div class="stat-label">🎬 video</div></div>
+        <div class="stat"><div class="stat-num">~2666</div><div class="stat-label">rasm</div></div>
+        <div class="stat"><div class="stat-num">~190</div><div class="stat-label">video</div></div>
       </div>
-      <div class="t-models"><b>Eng katta paket!</b><br>8000 token — cheksiz imkoniyat<br>👑 Professional va studiyalar uchun</div>
+      <div class="t-models">
+        <b>🎨 Rasm modellari:</b><br>
+        Nano Banana (4 tok)<br>
+        GPT Image (8-16 tok)<br><br>
+        <b>🎬 Video modellari:</b><br>
+        Kling 2.5 Turbo (42-84 tok)<br>
+        Kling 2.6 (55-220 tok)<br>
+        Kling 3.0 (100-400 tok)<br>
+        Veo 3.1 Fast (60 tok)<br>
+        Veo 3.1 Quality (250 tok)<br>
+        Sora 2 Standard (30-35 tok)<br>
+        Sora 2 Pro (35-40 tok)<br><br>
+        👑 Eng katta paket — professional uchun
+      </div>
     </div>
 
   </div>
 </div>
 
-<!-- TOKEN PAKETLARI -->
+<!-- TOKEN -->
 <div id="tokens" class="section">
   <div class="tok-grid">
-    <div class="tok-card" onclick="sel('tokens_50')">
+    <div class="tok-card" onclick="sel('tokens_50',this)">
       <div class="tok-name">🎫 50 tok</div>
       <div class="tok-price">9 000 so'm</div>
-      <div class="tok-desc">~12 rasm / 1 video</div>
+      <div class="tok-desc">~16 rasm / ~1 video</div>
     </div>
-    <div class="tok-card" onclick="sel('tokens_150')">
+    <div class="tok-card" onclick="sel('tokens_150',this)">
       <div class="tok-name">🎫 150 tok</div>
       <div class="tok-price">25 000 so'm</div>
-      <div class="tok-desc">~37 rasm / 3 video</div>
+      <div class="tok-desc">~50 rasm / ~3 video</div>
     </div>
-    <div class="tok-card" onclick="sel('tokens_500')">
+    <div class="tok-card" onclick="sel('tokens_500',this)">
       <div class="tok-name">🎫 500 tok</div>
       <div class="tok-price">69 000 so'm</div>
-      <div class="tok-desc">~125 rasm / 10 video</div>
+      <div class="tok-desc">~166 rasm / ~11 video</div>
     </div>
-    <div class="tok-card" onclick="sel('tokens_1200')">
+    <div class="tok-card" onclick="sel('tokens_1200',this)">
       <div class="tok-name">🎫 1200 tok</div>
       <div class="tok-price">139 000 so'm</div>
-      <div class="tok-desc">~300 rasm / 25 video</div>
+      <div class="tok-desc">~400 rasm / ~28 video</div>
     </div>
   </div>
 </div>
@@ -168,13 +234,13 @@ cursor:pointer;background:var(--btn);color:var(--btnt);margin-top:10px;transitio
 <div class="pay-section hidden" id="pay-area">
   <h3>💳 To'lov usuli</h3>
   <div class="methods">
-    <div class="method" onclick="meth('karta')">💳 Karta</div>
-    <div class="method" onclick="meth('click')">Click</div>
-    <div class="method" onclick="meth('payme')">Payme</div>
+    <div class="method" onclick="meth('karta',this)">💳 Karta</div>
+    <div class="method" onclick="meth('click',this)">Click</div>
+    <div class="method" onclick="meth('payme',this)">Payme</div>
   </div>
   <div id="card-area" class="hidden">
     <div class="card-box" onclick="copyCard()">
-      <div class="card-num" id="card-display">Yuklanmoqda...</div>
+      <div class="card-num" id="card-display">8600 1234 5678 9012</div>
       <div class="card-hint">👆 Bosib nusxalang</div>
     </div>
   </div>
@@ -183,74 +249,98 @@ cursor:pointer;background:var(--btn);color:var(--btnt);margin-top:10px;transitio
 </div>
 
 <script>
-const tg=window.Telegram.WebApp;
+var tg = window.Telegram.WebApp;
 tg.expand();
-tg.enableClosingConfirmation();
 
-const P={start:49000,standard:99000,pro:199000,business:399000,unlimited:649000,
-  tokens_50:9000,tokens_150:25000,tokens_500:69000,tokens_1200:139000};
-const N={start:"⭐ Start",standard:"🔥 Standart",pro:"💎 Pro",business:"🏢 Business",unlimited:"👑 Unlimited",
-  tokens_50:"🎫 50 tok",tokens_150:"🎫 150 tok",tokens_500:"🎫 500 tok",tokens_1200:"🎫 1200 tok"};
+var PRICES = {
+  start:49000, standard:99000, pro:199000, business:399000, unlimited:649000,
+  tokens_50:9000, tokens_150:25000, tokens_500:69000, tokens_1200:139000
+};
+var NAMES = {
+  start:"⭐ Start", standard:"🔥 Standart", pro:"💎 Pro",
+  business:"🏢 Business", unlimited:"👑 Unlimited",
+  tokens_50:"🎫 50 tok", tokens_150:"🎫 150 tok",
+  tokens_500:"🎫 500 tok", tokens_1200:"🎫 1200 tok"
+};
 
-let pk=null,mt=null;
-const $=id=>document.getElementById(id);
-const fmt=n=>n.toLocaleString('uz-UZ').replace(/,/g,' ');
+var pk = null;
+var mt = null;
 
-function sw(tab){
-  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',(tab==='tariffs'?i===0:i===1)));
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  $(tab).classList.add('active');
-  reset();
+function fmt(n) {
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
-function sel(key){
-  pk=key; mt=null;
-  document.querySelectorAll('.t-card,.tok-card').forEach(c=>c.classList.remove('selected'));
-  if(event&&event.currentTarget) event.currentTarget.classList.add('selected');
-  $('pay-area').classList.remove('hidden');
-  document.querySelectorAll('.method').forEach(m=>m.classList.remove('sel'));
-  $('card-area').classList.add('hidden');
-  $('pay-btn').classList.add('hidden');
-  $('pay-note').classList.add('hidden');
+function sw(tab) {
+  var tabs = document.querySelectorAll('.tab');
+  if (tab === 'tariffs') { tabs[0].className='tab active'; tabs[1].className='tab'; }
+  else { tabs[0].className='tab'; tabs[1].className='tab active'; }
+  document.getElementById('tariffs').className = (tab==='tariffs') ? 'section active' : 'section';
+  document.getElementById('tokens').className = (tab==='tokens') ? 'section active' : 'section';
+  resetAll();
 }
 
-function meth(m){
-  mt=m;
-  document.querySelectorAll('.method').forEach(el=>el.classList.remove('sel'));
-  if(event&&event.currentTarget) event.currentTarget.classList.add('sel');
-  if(m==='karta'){
-    $('card-area').classList.remove('hidden');
-    // karta raqamni .env dan olib qoyish — bot orqali
-    $('card-display').textContent=tg.initDataUnsafe?.start_param||'8600 0000 0000 0000';
+function sel(key, el) {
+  pk = key; mt = null;
+  var cards = document.querySelectorAll('.t-card,.tok-card');
+  for (var i=0; i<cards.length; i++) cards[i].classList.remove('selected');
+  if (el) el.classList.add('selected');
+  document.getElementById('pay-area').classList.remove('hidden');
+  var meths = document.querySelectorAll('.method');
+  for (var i=0; i<meths.length; i++) meths[i].classList.remove('sel');
+  document.getElementById('card-area').classList.add('hidden');
+  document.getElementById('pay-btn').classList.add('hidden');
+  document.getElementById('pay-note').classList.add('hidden');
+}
+
+function meth(m, el) {
+  mt = m;
+  var meths = document.querySelectorAll('.method');
+  for (var i=0; i<meths.length; i++) meths[i].classList.remove('sel');
+  if (el) el.classList.add('sel');
+  if (m === 'karta') {
+    document.getElementById('card-area').classList.remove('hidden');
   } else {
-    $('card-area').classList.add('hidden');
+    document.getElementById('card-area').classList.add('hidden');
   }
-  $('pay-btn').classList.remove('hidden');
-  $('pay-note').classList.remove('hidden');
-  $('btn-price').textContent=fmt(P[pk])+' so\'m';
+  document.getElementById('pay-btn').classList.remove('hidden');
+  document.getElementById('pay-note').classList.remove('hidden');
+  document.getElementById('btn-price').textContent = fmt(PRICES[pk]) + " so'm";
 }
 
-function copyCard(){
-  const num=$('card-display').textContent.replace(/\s/g,'');
-  navigator.clipboard.writeText(num).then(()=>tg.showAlert('✅ Nusxalandi!')).catch(()=>{});
+function copyCard() {
+  var num = document.getElementById('card-display').textContent.replace(/\s/g, '');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(num).then(function(){
+      tg.showAlert('Nusxalandi!');
+    });
+  } else {
+    tg.showAlert('Karta: ' + num);
+  }
 }
 
-function pay(){
-  if(!pk||!mt)return;
-  tg.sendData(JSON.stringify({action:"payment",package:pk,method:mt,name:N[pk],price:P[pk]}));
+function pay() {
+  if (!pk || !mt) { tg.showAlert("Tarif va to'lov usulini tanlang!"); return; }
+  try {
+    tg.sendData(JSON.stringify({
+      action: "payment", package: pk, method: mt,
+      name: NAMES[pk], price: PRICES[pk]
+    }));
+  } catch(e) {
+    tg.showAlert('Xatolik: ' + e.message);
+  }
 }
 
-function reset(){
-  pk=null;mt=null;
-  document.querySelectorAll('.t-card,.tok-card,.method').forEach(c=>{c.classList.remove('selected');c.classList.remove('sel')});
-  $('pay-area').classList.add('hidden');
+function resetAll() {
+  pk = null; mt = null;
+  var all = document.querySelectorAll('.t-card,.tok-card,.method');
+  for (var i=0; i<all.length; i++) { all[i].classList.remove('selected'); all[i].classList.remove('sel'); }
+  document.getElementById('pay-area').classList.add('hidden');
 }
 
-// Karta raqamni URL parametrdan olish (agar bot yuborsa)
-const params=new URLSearchParams(window.location.search);
-const cardFromUrl=params.get('card');
-if(cardFromUrl){
-  $('card-display').textContent=cardFromUrl.replace(/(\d{4})/g,'$1 ').trim();
+var urlParams = new URLSearchParams(window.location.search);
+var cardParam = urlParams.get('card');
+if (cardParam) {
+  document.getElementById('card-display').textContent = cardParam.replace(/(\d{4})/g, '$1 ').trim();
 }
 </script>
 </body>
