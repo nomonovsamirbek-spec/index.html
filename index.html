@@ -17,32 +17,38 @@ background:var(--bg);color:var(--txt);overflow-x:hidden;padding-bottom:120px}
 cursor:pointer;background:var(--bg2);color:var(--hint);transition:.2s}
 .tab.active{background:var(--btn);color:var(--btnt)}
 .section{display:none}.section.active{display:block}
+
+/* KATTA KARTALAR — 90% kenglik, chetlari ko'rinadi */
 .scroll-wrap{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
-padding:12px;display:flex;gap:10px}
+padding:12px 0;display:flex;gap:12px;padding-left:5%;padding-right:5%}
 .scroll-wrap::-webkit-scrollbar{display:none}
-.t-card{min-width:280px;max-width:305px;scroll-snap-align:start;background:var(--bg2);
-border-radius:16px;padding:16px;border:2.5px solid transparent;transition:.2s;flex-shrink:0;position:relative}
-.t-card.selected{border-color:var(--btn);transform:scale(1.02)}
-.badge{position:absolute;top:-8px;right:12px;background:#ff3b30;color:#fff;
-font-size:10px;font-weight:800;padding:3px 8px;border-radius:8px;text-transform:uppercase}
+.t-card{min-width:90%;max-width:90%;scroll-snap-align:center;background:var(--bg2);
+border-radius:20px;padding:20px;border:2.5px solid transparent;transition:.2s;flex-shrink:0;position:relative}
+.t-card.selected{border-color:var(--btn);transform:scale(1.01)}
+.badge{position:absolute;top:-10px;right:16px;background:#ff3b30;color:#fff;
+font-size:11px;font-weight:800;padding:4px 10px;border-radius:10px;text-transform:uppercase}
 .badge.green{background:#34c759}
 .badge.gold{background:linear-gradient(135deg,#f7c948,#e6a817);color:#333}
-.t-name{font-size:18px;font-weight:800;margin-bottom:4px}
-.t-price{font-size:22px;font-weight:800;color:var(--btn)}
-.t-old{font-size:15px;font-weight:700;color:#ff3b30;text-decoration:line-through;margin-bottom:2px}
-.t-tokens{font-size:14px;font-weight:700;margin:6px 0}
-.t-stats{display:flex;gap:8px;margin:8px 0}
-.stat{flex:1;background:var(--bg);border-radius:10px;padding:8px;text-align:center}
-.stat-num{font-size:16px;font-weight:800}
-.stat-label{font-size:10px;color:var(--hint)}
-.t-models{font-size:11px;color:var(--hint);line-height:1.7;margin-top:8px;border-top:1px solid rgba(128,128,128,0.15);padding-top:8px}
-.t-models b{color:var(--txt);font-size:12px}
+.t-name{font-size:22px;font-weight:800;margin-bottom:6px}
+.t-price{font-size:26px;font-weight:800;color:var(--btn)}
+.t-old{font-size:16px;font-weight:700;color:#ff3b30;text-decoration:line-through;margin-bottom:2px}
+.t-tokens{font-size:16px;font-weight:700;margin:8px 0}
+.t-stats{display:flex;gap:10px;margin:10px 0}
+.stat{flex:1;background:var(--bg);border-radius:12px;padding:10px;text-align:center}
+.stat-num{font-size:20px;font-weight:800}
+.stat-label{font-size:11px;color:var(--hint)}
+.t-models{font-size:13px;color:var(--hint);line-height:1.8;margin-top:10px;border-top:1px solid rgba(128,128,128,0.15);padding-top:10px}
+.t-models b{color:var(--txt);font-size:13px}
+
+/* TOKEN */
 .tok-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 12px}
 .tok-card{background:var(--bg2);border-radius:14px;padding:14px;cursor:pointer;border:2.5px solid transparent;transition:.2s}
 .tok-card.selected{border-color:var(--btn)}
 .tok-name{font-weight:700;font-size:15px}
 .tok-price{font-weight:800;font-size:14px;color:var(--btn);margin-top:4px}
 .tok-desc{font-size:11px;color:var(--hint);margin-top:2px}
+
+/* PAYMENT */
 .pay-section{padding:0 12px;margin-top:12px}
 .pay-section h3{font-size:13px;color:var(--hint);font-weight:600;margin-bottom:8px}
 .methods{display:flex;gap:6px}
@@ -69,31 +75,28 @@ cursor:pointer;background:var(--btn);color:var(--btnt);margin-top:10px;transitio
 <div id="tariffs" class="section active">
   <div class="scroll-wrap">
 
-    <!-- START -->
+    <!-- START: 300 tok / 3 tok = 100 rasm, 300/30 = 10 video -->
     <div class="t-card" onclick="sel('start',this)">
       <div class="t-name">⭐ Start</div>
       <div class="t-price">49 000 <small>so'm/oy</small></div>
       <div class="t-tokens">💰 300 token</div>
       <div class="t-stats">
         <div class="stat"><div class="stat-num">~100</div><div class="stat-label">rasm</div></div>
-        <div class="stat"><div class="stat-num">~7</div><div class="stat-label">video</div></div>
+        <div class="stat"><div class="stat-num">~10</div><div class="stat-label">video</div></div>
       </div>
       <div class="t-models">
         <b>🎨 Rasm modellari:</b><br>
-        Nano Banana (4 tok)<br>
-        GPT Image (8-16 tok)<br><br>
+        Nano Banana Pro<br>
+        GPT Image<br>
+        Qwen<br><br>
         <b>🎬 Video modellari:</b><br>
-        Kling 2.5 Turbo (42-84 tok)<br>
-        Kling 2.6 (55-220 tok)<br>
-        Kling 3.0 (100-400 tok)<br>
-        Veo 3.1 Fast (60 tok)<br>
-        Veo 3.1 Quality (250 tok)<br>
-        Sora 2 Standard (30-35 tok)<br>
-        Sora 2 Pro (35-40 tok)
+        Kling 2.5 · 2.6 · 3.0<br>
+        Veo Fast · Quality<br>
+        Sora 2 · Sora 2 Pro
       </div>
     </div>
 
-    <!-- STANDART -->
+    <!-- STANDART: 700/3 = 233 rasm, 700/30 = 23 video -->
     <div class="t-card" onclick="sel('standard',this)">
       <div class="badge green">MASHHUR</div>
       <div class="t-name">🔥 Standart</div>
@@ -102,25 +105,22 @@ cursor:pointer;background:var(--btn);color:var(--btnt);margin-top:10px;transitio
       <div class="t-tokens">💰 700 token</div>
       <div class="t-stats">
         <div class="stat"><div class="stat-num">~233</div><div class="stat-label">rasm</div></div>
-        <div class="stat"><div class="stat-num">~16</div><div class="stat-label">video</div></div>
+        <div class="stat"><div class="stat-num">~23</div><div class="stat-label">video</div></div>
       </div>
       <div class="t-models">
         <b>🎨 Rasm modellari:</b><br>
-        Nano Banana (4 tok)<br>
-        GPT Image (8-16 tok)<br><br>
+        Nano Banana Pro<br>
+        GPT Image<br>
+        Qwen<br><br>
         <b>🎬 Video modellari:</b><br>
-        Kling 2.5 Turbo (42-84 tok)<br>
-        Kling 2.6 (55-220 tok)<br>
-        Kling 3.0 (100-400 tok)<br>
-        Veo 3.1 Fast (60 tok)<br>
-        Veo 3.1 Quality (250 tok)<br>
-        Sora 2 Standard (30-35 tok)<br>
-        Sora 2 Pro (35-40 tok)<br><br>
+        Kling 2.5 · 2.6 · 3.0<br>
+        Veo Fast · Quality<br>
+        Sora 2 · Sora 2 Pro<br><br>
         ⚡ Limitsiz generatsiya!
       </div>
     </div>
 
-    <!-- PRO -->
+    <!-- PRO: 1500/3 = 500 rasm, 1500/30 = 50 video -->
     <div class="t-card" onclick="sel('pro',this)">
       <div class="badge">-20%</div>
       <div class="t-name">💎 Pro</div>
@@ -129,25 +129,22 @@ cursor:pointer;background:var(--btn);color:var(--btnt);margin-top:10px;transitio
       <div class="t-tokens">💰 1 500 token</div>
       <div class="t-stats">
         <div class="stat"><div class="stat-num">~500</div><div class="stat-label">rasm</div></div>
-        <div class="stat"><div class="stat-num">~35</div><div class="stat-label">video</div></div>
+        <div class="stat"><div class="stat-num">~50</div><div class="stat-label">video</div></div>
       </div>
       <div class="t-models">
         <b>🎨 Rasm modellari:</b><br>
-        Nano Banana (4 tok)<br>
-        GPT Image (8-16 tok)<br><br>
+        Nano Banana Pro<br>
+        GPT Image<br>
+        Qwen<br><br>
         <b>🎬 Video modellari:</b><br>
-        Kling 2.5 Turbo (42-84 tok)<br>
-        Kling 2.6 (55-220 tok)<br>
-        Kling 3.0 (100-400 tok)<br>
-        Veo 3.1 Fast (60 tok)<br>
-        Veo 3.1 Quality (250 tok)<br>
-        Sora 2 Standard (30-35 tok)<br>
-        Sora 2 Pro (35-40 tok)<br><br>
+        Kling 2.5 · 2.6 · 3.0<br>
+        Veo Fast · Quality<br>
+        Sora 2 · Sora 2 Pro<br><br>
         💼 Biznes va kontent uchun
       </div>
     </div>
 
-    <!-- BUSINESS -->
+    <!-- BUSINESS: 3500/3 = 1166 rasm, 3500/30 = 116 video -->
     <div class="t-card" onclick="sel('business',this)">
       <div class="badge">-20%</div>
       <div class="t-name">🏢 Business</div>
@@ -156,25 +153,22 @@ cursor:pointer;background:var(--btn);color:var(--btnt);margin-top:10px;transitio
       <div class="t-tokens">💰 3 500 token</div>
       <div class="t-stats">
         <div class="stat"><div class="stat-num">~1166</div><div class="stat-label">rasm</div></div>
-        <div class="stat"><div class="stat-num">~83</div><div class="stat-label">video</div></div>
+        <div class="stat"><div class="stat-num">~116</div><div class="stat-label">video</div></div>
       </div>
       <div class="t-models">
         <b>🎨 Rasm modellari:</b><br>
-        Nano Banana (4 tok)<br>
-        GPT Image (8-16 tok)<br><br>
+        Nano Banana Pro<br>
+        GPT Image<br>
+        Qwen<br><br>
         <b>🎬 Video modellari:</b><br>
-        Kling 2.5 Turbo (42-84 tok)<br>
-        Kling 2.6 (55-220 tok)<br>
-        Kling 3.0 (100-400 tok)<br>
-        Veo 3.1 Fast (60 tok)<br>
-        Veo 3.1 Quality (250 tok)<br>
-        Sora 2 Standard (30-35 tok)<br>
-        Sora 2 Pro (35-40 tok)<br><br>
+        Kling 2.5 · 2.6 · 3.0<br>
+        Veo Fast · Quality<br>
+        Sora 2 · Sora 2 Pro<br><br>
         🏢 Jamoalar va agentliklar uchun
       </div>
     </div>
 
-    <!-- UNLIMITED -->
+    <!-- UNLIMITED: 8000/3 = 2666 rasm, 8000/30 = 266 video -->
     <div class="t-card" onclick="sel('unlimited',this)">
       <div class="badge gold">👑 TOP</div>
       <div class="t-name">👑 Unlimited</div>
@@ -183,20 +177,17 @@ cursor:pointer;background:var(--btn);color:var(--btnt);margin-top:10px;transitio
       <div class="t-tokens">💰 8 000 token</div>
       <div class="t-stats">
         <div class="stat"><div class="stat-num">~2666</div><div class="stat-label">rasm</div></div>
-        <div class="stat"><div class="stat-num">~190</div><div class="stat-label">video</div></div>
+        <div class="stat"><div class="stat-num">~266</div><div class="stat-label">video</div></div>
       </div>
       <div class="t-models">
         <b>🎨 Rasm modellari:</b><br>
-        Nano Banana (4 tok)<br>
-        GPT Image (8-16 tok)<br><br>
+        Nano Banana Pro<br>
+        GPT Image<br>
+        Qwen<br><br>
         <b>🎬 Video modellari:</b><br>
-        Kling 2.5 Turbo (42-84 tok)<br>
-        Kling 2.6 (55-220 tok)<br>
-        Kling 3.0 (100-400 tok)<br>
-        Veo 3.1 Fast (60 tok)<br>
-        Veo 3.1 Quality (250 tok)<br>
-        Sora 2 Standard (30-35 tok)<br>
-        Sora 2 Pro (35-40 tok)<br><br>
+        Kling 2.5 · 2.6 · 3.0<br>
+        Veo Fast · Quality<br>
+        Sora 2 · Sora 2 Pro<br><br>
         👑 Eng katta paket — professional uchun
       </div>
     </div>
@@ -215,17 +206,17 @@ cursor:pointer;background:var(--btn);color:var(--btnt);margin-top:10px;transitio
     <div class="tok-card" onclick="sel('tokens_150',this)">
       <div class="tok-name">🎫 150 tok</div>
       <div class="tok-price">25 000 so'm</div>
-      <div class="tok-desc">~50 rasm / ~3 video</div>
+      <div class="tok-desc">~50 rasm / ~5 video</div>
     </div>
     <div class="tok-card" onclick="sel('tokens_500',this)">
       <div class="tok-name">🎫 500 tok</div>
       <div class="tok-price">69 000 so'm</div>
-      <div class="tok-desc">~166 rasm / ~11 video</div>
+      <div class="tok-desc">~166 rasm / ~16 video</div>
     </div>
     <div class="tok-card" onclick="sel('tokens_1200',this)">
       <div class="tok-name">🎫 1200 tok</div>
       <div class="tok-price">139 000 so'm</div>
-      <div class="tok-desc">~400 rasm / ~28 video</div>
+      <div class="tok-desc">~400 rasm / ~40 video</div>
     </div>
   </div>
 </div>
