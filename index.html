@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Anor AI — Tariflar</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--tg-theme-bg-color,#fff);color:var(--tg-theme-text-color,#000);padding:12px;padding-bottom:100px}
+.tabs{display:flex;gap:6px;margin-bottom:14px}
+.tab{flex:1;padding:10px 4px;text-align:center;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;background:var(--tg-theme-secondary-bg-color,#f0f0f0);color:var(--tg-theme-text-color,#555)}
+.tab.active{background:var(--tg-theme-button-color,#3390ec);color:#fff}
+.section{display:none}.section.active{display:block}
+.card{background:var(--tg-theme-secondary-bg-color,#f5f5f5);border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;border:2px solid transparent;transition:.15s}
+.card.selected{border-color:var(--tg-theme-button-color,#3390ec)}
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.card-name{font-weight:700;font-size:15px}
+.card-price{font-weight:700;font-size:14px;color:var(--tg-theme-button-color,#3390ec)}
+.card-desc{font-size:12px;color:var(--tg-theme-hint-color,#999);line-height:1.4}
+.card-tokens{font-size:13px;font-weight:600;margin-top:4px}
+h3{font-size:14px;font-weight:600;margin:14px 0 8px;color:var(--tg-theme-hint-color,#999)}
+.methods{display:flex;gap:8px;margin:14px 0}
+.method{flex:1;padding:10px;text-align:center;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;background:var(--tg-theme-secondary-bg-color,#f0f0f0);border:2px solid transparent}
+.method.selected{border-color:var(--tg-theme-button-color,#3390ec)}
+.card-number{background:var(--tg-theme-secondary-bg-color,#f5f5f5);border-radius:10px;padding:12px;text-align:center;font-size:18px;font-weight:700;letter-spacing:2px;margin:10px 0;cursor:pointer}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;text-align:center;background:var(--tg-theme-button-color,#3390ec);color:#fff;margin-top:10px}
+.btn:disabled{opacity:.5}
+.note{font-size:11px;color:var(--tg-theme-hint-color,#999);text-align:center;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('tariffs')">💳 Tariflar</div>
+  <div class="tab" onclick="switchTab('tokens')">🎫 Token</div>
+</div>
+
+<div id="tariffs" class="section active">
+  <div class="card" onclick="selectPkg('start')">
+    <div class="card-top"><span class="card-name">⭐ Start</span><span class="card-price">49 000 so'm</span></div>
+    <div class="card-tokens">💰 300 token</div>
+    <div class="card-desc">🎨 3 rasm model | 🎬 Kling 2.5<br>📊 Limitsiz!</div>
+  </div>
+  <div class="card" onclick="selectPkg('standard')">
+    <div class="card-top"><span class="card-name">🔥 Standart</span><span class="card-price">99 000 so'm</span></div>
+    <div class="card-tokens">💰 700 token</div>
+    <div class="card-desc">🎨 3 rasm | 🎬 Kling 2.5/2.6, Sora Standard<br>📊 Limitsiz!</div>
+  </div>
+  <div class="card" onclick="selectPkg('pro')">
+    <div class="card-top"><span class="card-name">💎 Pro</span><span class="card-price">199 000 so'm</span></div>
+    <div class="card-tokens">💰 1 500 token</div>
+    <div class="card-desc">🎨 3 rasm | 🎬 + Kling 3.0, Veo Fast, Sora Stable<br>📊 Limitsiz!</div>
+  </div>
+  <div class="card" onclick="selectPkg('business')">
+    <div class="card-top"><span class="card-name">🏢 Business</span><span class="card-price">399 000 so'm</span></div>
+    <div class="card-tokens">💰 3 500 token</div>
+    <div class="card-desc">🎨 3 rasm | 🎬 + Veo Quality — BARCHASI<br>📊 Limitsiz!</div>
+  </div>
+  <div class="card" onclick="selectPkg('unlimited')">
+    <div class="card-top"><span class="card-name">👑 Unlimited</span><span class="card-price">649 000 so'm</span></div>
+    <div class="card-tokens">💰 8 000 token</div>
+    <div class="card-desc">🎨 BARCHASI | 🎬 BARCHASI<br>📊 Limitsiz! Eng katta paket!</div>
+  </div>
+</div>
+
+<div id="tokens" class="section">
+  <div class="card" onclick="selectPkg('tokens_50')">
+    <div class="card-top"><span class="card-name">🎫 50 token</span><span class="card-price">9 000 so'm</span></div>
+    <div class="card-desc">~12 rasm yoki 1 video</div>
+  </div>
+  <div class="card" onclick="selectPkg('tokens_150')">
+    <div class="card-top"><span class="card-name">🎫 150 token</span><span class="card-price">25 000 so'm</span></div>
+    <div class="card-desc">~37 rasm yoki 3 video</div>
+  </div>
+  <div class="card" onclick="selectPkg('tokens_500')">
+    <div class="card-top"><span class="card-name">🎫 500 token</span><span class="card-price">69 000 so'm</span></div>
+    <div class="card-desc">~125 rasm yoki 10 video</div>
+  </div>
+  <div class="card" onclick="selectPkg('tokens_1200')">
+    <div class="card-top"><span class="card-name">🎫 1200 token</span><span class="card-price">139 000 so'm</span></div>
+    <div class="card-desc">~300 rasm yoki 25 video</div>
+  </div>
+</div>
+
+<h3 id="payment-section" style="display:none">💳 To'lov usuli</h3>
+<div id="methods" class="methods" style="display:none">
+  <div class="method" onclick="selectMethod('card')">💳 Karta</div>
+  <div class="method" onclick="selectMethod('click')">Click</div>
+  <div class="method" onclick="selectMethod('payme')">Payme</div>
+</div>
+
+<div id="card-info" style="display:none">
+  <div class="card-number" onclick="copyCard()">8600 1234 5678 9012</div>
+  <p class="note">Karta raqamini bosib nusxalang</p>
+</div>
+
+<button id="pay-btn" class="btn" style="display:none" onclick="confirmPayment()">✅ To'ladim</button>
+<p id="pay-note" class="note" style="display:none">Admin 5-30 daqiqada tasdiqlaydi</p>
+
+<script>
+const tg = window.Telegram.WebApp;
+tg.expand();
+
+const PRICES = {
+  start:49000,standard:99000,pro:199000,business:399000,unlimited:649000,
+  tokens_50:9000,tokens_150:25000,tokens_500:69000,tokens_1200:139000
+};
+const NAMES = {
+  start:"⭐ Start",standard:"🔥 Standart",pro:"💎 Pro",business:"🏢 Business",unlimited:"👑 Unlimited",
+  tokens_50:"🎫 50 token",tokens_150:"🎫 150 token",tokens_500:"🎫 500 token",tokens_1200:"🎫 1200 token"
+};
+
+let selectedPkg=null, selectedMethod=null;
+
+function switchTab(tab){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===(tab==='tariffs'?0:1)));
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');
+  resetSelection();
+}
+
+function selectPkg(pk){
+  selectedPkg=pk; selectedMethod=null;
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  document.getElementById('payment-section').style.display='block';
+  document.getElementById('methods').style.display='flex';
+  document.querySelectorAll('.method').forEach(m=>m.classList.remove('selected'));
+  document.getElementById('card-info').style.display='none';
+  document.getElementById('pay-btn').style.display='none';
+  document.getElementById('pay-note').style.display='none';
+}
+
+function selectMethod(m){
+  selectedMethod=m;
+  document.querySelectorAll('.method').forEach(el=>el.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  document.getElementById('card-info').style.display=m==='card'?'block':'none';
+  document.getElementById('pay-btn').style.display='block';
+  document.getElementById('pay-note').style.display='block';
+}
+
+function copyCard(){
+  navigator.clipboard.writeText('8600123456789012').then(()=>tg.showAlert('Nusxalandi!')).catch(()=>{});
+}
+
+function confirmPayment(){
+  if(!selectedPkg||!selectedMethod)return;
+  tg.sendData(JSON.stringify({
+    action:"payment",package:selectedPkg,method:selectedMethod,
+    name:NAMES[selectedPkg],price:PRICES[selectedPkg]
+  }));
+}
+
+function resetSelection(){
+  selectedPkg=null;selectedMethod=null;
+  document.querySelectorAll('.card,.method').forEach(c=>c.classList.remove('selected'));
+  ['payment-section','methods','card-info','pay-btn','pay-note'].forEach(id=>document.getElementById(id).style.display='none');
+}
+</script>
+</body>
+</html>
